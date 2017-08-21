@@ -23,10 +23,9 @@ class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
         notifyItemInserted(index)
     }
 
-    fun addAll(collection: Collection<T>) {
-        val size = items.size
-        items.addAll(collection)
-        notifyItemRangeInserted(size, items.size)
+    fun addAll(collection: Collection<T>, index: Int = items.size) {
+        items.addAll(index, collection)
+        notifyItemRangeInserted(index, items.size)
     }
 
     fun remove(item: T) {
