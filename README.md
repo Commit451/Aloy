@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/Commit451/Aloy.svg?branch=master)](https://travis-ci.org/Commit451/Aloy) [![](https://jitpack.io/v/Commit451/Aloy.svg)](https://jitpack.io/#Commit451/Aloy)
 
-Simplified RecyclerView API via Kotlin
+Create a RecyclerView.Adapter without having to subclass.
 
-# Usage
+## Usage
 The idea is to be able to have a valid `RecyclerView.Adapter` without having to create a class for the adapter. We do this by providing lambdas to call for `onCreateViewHolder` and `onBindViewHolder`:
 ```kotlin
 //top of file
@@ -23,6 +23,9 @@ adapter = AloyAdapter({ parent, viewType ->
 })
 ```
 See the sample `app` module for more usage.
+
+## Optional
+You can optionally override `getItemViewType` if you need to by setting the `onGetItemViewType` on the adapter.
 
 License
 --------
