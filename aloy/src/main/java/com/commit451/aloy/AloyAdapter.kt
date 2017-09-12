@@ -6,7 +6,7 @@ import android.view.ViewGroup
 /**
  * Allows you to create a [RecyclerView.Adapter] without having to extend [RecyclerView.Adapter]
  */
-class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
+open class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
         private val onCreateViewHolder: (parent: ViewGroup, viewType: Int) -> VH,
         private val onBindViewHolder: (viewHolder: VH, position: Int, item: T) -> Unit) : RecyclerView.Adapter<VH>() {
 
