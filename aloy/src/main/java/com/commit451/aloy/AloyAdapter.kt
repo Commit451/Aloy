@@ -6,19 +6,24 @@ import android.view.ViewGroup
 /**
  * Allows you to create a [RecyclerView.Adapter] without having to extend [RecyclerView.Adapter]
  */
-open class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
-        private val onCreateViewHolder: (parent: ViewGroup, viewType: Int) -> VH,
-        private val onBindViewHolder: (viewHolder: VH, position: Int, item: T) -> Unit) : RecyclerView.Adapter<VH>() {
+open class AloyAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Adapter<VH>() {
+
+    var onCreateViewHolder:  ((parent: ViewGroup, viewType: Int) -> VH)? = null
+    var onBindViewHolder: ((viewHolder: VH, position: Int, item: T) -> Unit)? = null
+    var onGetItemViewType: ((position: Int) -> Int)? = null
 
     val items = mutableListOf<T>()
 
-    var onGetItemViewType: ((position: Int) -> Int)? = null
+    constructor(onCreateViewHolder: ((parent: ViewGroup, viewType: Int) -> VH)? = null, onBindViewHolder: ((viewHolder: VH, position: Int, item: T) -> Unit)? = null) : this() {
+        this.onCreateViewHolder = onCreateViewHolder
+        this.onBindViewHolder = onBindViewHolder
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = onCreateViewHolder.invoke(parent, viewType)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = onCreateViewHolder!!.invoke(parent, viewType)
 
     override fun onBindViewHolder(viewHolder: VH, position: Int) {
         val item = items[position]
-        onBindViewHolder.invoke(viewHolder, position, item)
+        onBindViewHolder!!.invoke(viewHolder, position, item)
     }
 
     override fun getItemCount(): Int = items.size
@@ -30,6 +35,14 @@ open class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
         } else {
             return super.getItemViewType(position)
         }
+    }
+
+    fun set(collection: Collection<T>?) {
+        items.clear()
+        collection?.let {
+            items.addAll(it)
+        }
+        notifyDataSetChanged()
     }
 
     fun add(item: T, index: Int = items.size) {
@@ -44,13 +57,29 @@ open class AloyAdapter<T, VH : RecyclerView.ViewHolder>(
 
     fun remove(item: T) {
         val index = items.indexOfFirst { it == item }
-        items.removeAt(index)
-        notifyItemRemoved(index)
+        if (index != -1) {
+            items.removeAt(index)
+            notifyItemRemoved(index)
+        }
+    }
+
+    fun removeAll(itemsToRemove: Collection<T>) {
+        for (item in itemsToRemove) {
+            remove(item)
+        }
     }
 
     fun update(item: T) {
         val index = items.indexOfFirst { it == item }
-        notifyItemChanged(index)
+        if (index != -1) {
+            notifyItemChanged(index)
+        }
+    }
+
+    fun updateAll(items: List<T>) {
+        for (item in items) {
+            update(item)
+        }
     }
 
     fun clear() {

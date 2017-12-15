@@ -22,6 +22,7 @@ adapter = AloyAdapter({ parent, viewType ->
     viewHolder.bind(item)
 })
 ```
+You can also set the `onCreateViewHolder` and `onBindViewHolder` lambdas after construction, just make sure you do so before the first call to `onCreateViewHolder` or `onBindViewHolder`. This is useful for subclassing.
 See the sample `app` module for more usage.
 
 ## Optional
