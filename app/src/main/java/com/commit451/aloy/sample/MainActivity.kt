@@ -1,11 +1,13 @@
 package com.commit451.aloy.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.view.View
 import android.view.ViewGroup
 import com.commit451.addendum.bindView
 import com.commit451.aloy.AloyAdapter
@@ -64,6 +66,10 @@ class MainActivity : AppCompatActivity() {
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
 
+        findViewById<View>(R.id.button_dynamic).setOnClickListener {
+            val intent = Intent(this, DynamicGridLayoutManagerActivity::class.java)
+            startActivity(intent)
+        }
         load()
     }
 
