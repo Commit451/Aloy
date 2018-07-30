@@ -1,7 +1,6 @@
 package com.commit451.aloy.sample
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
@@ -24,17 +23,7 @@ class DynamicGridLayoutManagerActivity : AppCompatActivity() {
 
         toolbar.title = "Aloy"
 
-        adapter = AloyAdapter({ parent, viewType ->
-            val holder = DynamicCheeseViewHolder.inflate(parent)
-            holder.itemView.setOnClickListener {
-                val cheese = adapter.items[holder.adapterPosition]
-                Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
-                        .show()
-            }
-            holder
-        }, { viewHolder, position, item ->
-            viewHolder.bind(item)
-        })
+        adapter = DynamicGridLayoutAdapter()
         val layoutManager = DynamicGridLayoutManager(this)
         layoutManager.setMinimumSpanSize(resources.getDimensionPixelSize(R.dimen.cheese_item_width))
         list.layoutManager =layoutManager
@@ -43,7 +32,7 @@ class DynamicGridLayoutManagerActivity : AppCompatActivity() {
         load()
     }
 
-    fun load() {
+    private fun load() {
         val cheeses = mutableListOf<Cheese>()
         for (index in 0..5) {
             cheeses.add(Cheeses.randomCheese)
@@ -51,5 +40,4 @@ class DynamicGridLayoutManagerActivity : AppCompatActivity() {
         adapter.clear()
         adapter.addAll(cheeses)
     }
-
 }

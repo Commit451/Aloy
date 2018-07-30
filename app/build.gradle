@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
 
 android {
@@ -20,7 +21,7 @@ android {
 }
 
 ext {
-    addendumVersion = '1.7.1'
+    addendumVersion = '2.0.0'
 }
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         load()
     }
 
-    fun load() {
+    private fun load() {
         val cheeses = mutableListOf<Cheese>()
         for (index in 0..5) {
             cheeses.add(Cheeses.randomCheese)
@@ -81,5 +81,4 @@ class MainActivity : AppCompatActivity() {
         adapter.clear()
         adapter.addAll(cheeses)
     }
-
 }
