@@ -1,6 +1,5 @@
 package com.commit451.aloy.sample
 
-import com.commit451.aloy.sample.Cheese
 import java.util.*
 
 /**

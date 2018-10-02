@@ -1,7 +1,9 @@
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+
 package com.commit451.aloy
 
-import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Allows you to create a [RecyclerView.Adapter] without having to extend [RecyclerView.Adapter]
@@ -29,12 +31,7 @@ open class AloyAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Adapter
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int {
-        val onGetItemViewType = onGetItemViewType
-        if (onGetItemViewType != null) {
-            return onGetItemViewType.invoke(position)
-        } else {
-            return super.getItemViewType(position)
-        }
+        return onGetItemViewType?.invoke(position) ?: super.getItemViewType(position)
     }
 
     fun set(collection: Collection<T>?) {
