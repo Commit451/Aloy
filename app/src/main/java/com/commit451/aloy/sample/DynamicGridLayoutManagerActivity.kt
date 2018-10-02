@@ -1,21 +1,14 @@
 package com.commit451.aloy.sample
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
-import android.view.ViewGroup
-import com.commit451.addendum.bindView
+import androidx.appcompat.app.AppCompatActivity
 import com.commit451.aloy.AloyAdapter
 import com.commit451.aloy.DynamicGridLayoutManager
+import kotlinx.android.synthetic.main.activity_dynamic_grid_layout_manager.*
 
 class DynamicGridLayoutManagerActivity : AppCompatActivity() {
 
-    val root: ViewGroup by bindView(R.id.root)
-    val toolbar: Toolbar by bindView(R.id.toolbar)
-    val list: RecyclerView by bindView(R.id.list)
-
-    lateinit var adapter: AloyAdapter<Cheese, DynamicCheeseViewHolder>
+    private lateinit var adapter: AloyAdapter<Cheese, DynamicCheeseViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

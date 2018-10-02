@@ -2,15 +2,12 @@ package com.commit451.aloy.sample
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.View
-import android.view.ViewGroup
-import com.commit451.addendum.bindView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.commit451.aloy.AloyAdapter
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +15,7 @@ class MainActivity : AppCompatActivity() {
         const val ID_REPLACE = 4
     }
 
-    val root: ViewGroup by bindView(R.id.root)
-    val toolbar: Toolbar by bindView(R.id.toolbar)
-    val list: RecyclerView by bindView(R.id.list)
-
-    lateinit var adapter: AloyAdapter<Cheese, CheeseViewHolder>
+    private lateinit var adapter: AloyAdapter<Cheese, CheeseViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

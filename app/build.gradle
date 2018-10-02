@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -20,16 +22,12 @@ android {
     }
 }
 
-ext {
-    addendumVersion = '2.0.0'
-}
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
+    implementation "androidx.appcompat:appcompat:1.0.0"
 
-    implementation "com.github.Commit451.Addendum:addendum:$addendumVersion"
+    implementation "com.google.android.material:material:1.0.0"
 
     implementation project(':aloy')
 }

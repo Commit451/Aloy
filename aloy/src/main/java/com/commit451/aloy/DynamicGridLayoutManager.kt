@@ -1,15 +1,17 @@
+@file:Suppress("unused")
+
 package com.commit451.aloy
 
 import android.content.Context
-import android.support.annotation.Px
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.Px
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
- * [android.support.v7.widget.GridLayoutManager] which dynamically sizes its number of columns based on
+ * [GridLayoutManager] which dynamically sizes its number of columns based on
  * [.setMinimumWidth] and the orientation
  */
 class DynamicGridLayoutManager : GridLayoutManager {
@@ -37,7 +39,7 @@ class DynamicGridLayoutManager : GridLayoutManager {
         requestLayout()
     }
 
-    override fun onMeasure(recycler: RecyclerView.Recycler?, state: RecyclerView.State?, widthSpec: Int, heightSpec: Int) {
+    override fun onMeasure(recycler: RecyclerView.Recycler, state: RecyclerView.State, widthSpec: Int, heightSpec: Int) {
         if (minSize != -1) {
             val widthOrHeight = if (orientation == LinearLayoutManager.VERTICAL) View.MeasureSpec.getSize(widthSpec) else View.MeasureSpec.getSize(heightSpec)
             val span = Math.max(1, widthOrHeight / minSize)
