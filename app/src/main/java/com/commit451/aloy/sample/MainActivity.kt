@@ -45,17 +45,20 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
-        adapter = AloyAdapter({ parent, viewType ->
-            val holder = CheeseViewHolder.inflate(parent)
-            holder.itemView.setOnClickListener {
-                val cheese = adapter.items[holder.adapterPosition]
-                Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
+        adapter = AloyAdapter(
+            onCreateViewHolder = { parent, viewType ->
+                val holder = CheeseViewHolder.inflate(parent)
+                holder.itemView.setOnClickListener {
+                    val cheese = adapter.items[holder.adapterPosition]
+                    Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
                         .show()
+                }
+                holder
+            },
+            onBindViewHolder = { viewHolder, position, item ->
+                viewHolder.bind(item)
             }
-            holder
-        }, { viewHolder, position, item ->
-            viewHolder.bind(item)
-        })
+        )
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
 

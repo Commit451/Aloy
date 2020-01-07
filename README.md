@@ -10,17 +10,20 @@ The idea is to be able to have a valid `RecyclerView.Adapter` without having to 
 //top of file
 lateinit var adapter: AloyAdapter<Cheese, CheeseViewHolder>
 //later, in onCreate for example:
-adapter = AloyAdapter({ parent, viewType ->
-    val holder = CheeseViewHolder.inflate(parent)
-    holder.itemView.setOnClickListener {
-        val cheese = adapter.items[holder.adapterPosition]
-        Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
+adapter = AloyAdapter(
+    onCreateViewHolder = { parent, viewType ->
+        val holder = CheeseViewHolder.inflate(parent)
+        holder.itemView.setOnClickListener {
+            val cheese = adapter.items[holder.adapterPosition]
+            Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
                 .show()
+        }
+        holder
+    },
+    onBindViewHolder = { viewHolder, position, item ->
+        viewHolder.bind(item)
     }
-    holder
-}, { viewHolder, position, item ->
-    viewHolder.bind(item)
-})
+)
 ```
 You can also set the `onCreateViewHolder` and `onBindViewHolder` lambdas after construction, just make sure you do so before the first call to `onCreateViewHolder` or `onBindViewHolder`. This is useful for subclassing.
 See the sample `app` module for more usage.
@@ -31,7 +34,7 @@ You can optionally override `getItemViewType` if you need to by setting the `onG
 License
 --------
 
-    Copyright 2017 Commit 451
+    Copyright 2020 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
