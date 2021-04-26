@@ -4,23 +4,25 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.commit451.aloy.AloyAdapter
 import com.commit451.aloy.DynamicGridLayoutManager
-import kotlinx.android.synthetic.main.activity_dynamic_grid_layout_manager.*
+import com.commit451.aloy.sample.databinding.ActivityDynamicGridLayoutManagerBinding
 
 class DynamicGridLayoutManagerActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDynamicGridLayoutManagerBinding
     private lateinit var adapter: AloyAdapter<Cheese, DynamicCheeseViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dynamic_grid_layout_manager)
+        binding = ActivityDynamicGridLayoutManagerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        toolbar.title = "Aloy"
+        binding.toolbar.title = "Aloy"
 
         adapter = DynamicGridLayoutAdapter()
         val layoutManager = DynamicGridLayoutManager(this)
         layoutManager.setMinimumSpanSize(resources.getDimensionPixelSize(R.dimen.cheese_item_width))
-        list.layoutManager =layoutManager
-        list.adapter = adapter
+        binding.list.layoutManager =layoutManager
+        binding.list.adapter = adapter
 
         load()
     }

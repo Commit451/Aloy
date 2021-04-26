@@ -1,6 +1,5 @@
 # Aloy
-
-[![Build Status](https://travis-ci.org/Commit451/Aloy.svg?branch=master)](https://travis-ci.org/Commit451/Aloy) [![](https://jitpack.io/v/Commit451/Aloy.svg)](https://jitpack.io/#Commit451/Aloy)
+[![](https://jitpack.io/v/Commit451/Aloy.svg)](https://jitpack.io/#Commit451/Aloy)
 
 Create a RecyclerView.Adapter without having to subclass.
 
@@ -9,7 +8,7 @@ The idea is to be able to have a valid `RecyclerView.Adapter` without having to 
 ```kotlin
 //top of file
 lateinit var adapter: AloyAdapter<Cheese, CheeseViewHolder>
-//later, in onCreate for example:
+//later, in onCreate (Activity) or onViewCreated (Fragment) for example:
 adapter = AloyAdapter(
     onCreateViewHolder = { parent, viewType ->
         val holder = CheeseViewHolder.inflate(parent)
@@ -34,7 +33,7 @@ You can optionally override `getItemViewType` if you need to by setting the `onG
 License
 --------
 
-    Copyright 2020 Commit 451
+    Copyright 2021 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

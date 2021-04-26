@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.commit451.aloy.AloyAdapter
+import com.commit451.aloy.sample.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,17 +15,19 @@ class MainActivity : AppCompatActivity() {
         const val ID_REPLACE = 4
     }
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: AloyAdapter<Cheese, CheeseViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        toolbar.title = "Aloy"
-        toolbar.inflateMenu(R.menu.add)
-        toolbar.inflateMenu(R.menu.remove)
-        toolbar.menu.add(0, ID_REPLACE, 3, "Replace Items")
-        toolbar.setOnMenuItemClickListener { item ->
+        binding.toolbar.title = "Aloy"
+        binding.toolbar.inflateMenu(R.menu.add)
+        binding.toolbar.inflateMenu(R.menu.remove)
+        binding.toolbar.menu.add(0, ID_REPLACE, 3, "Replace Items")
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_add -> {
                     val cheese = Cheeses.randomCheese
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 val holder = CheeseViewHolder.inflate(parent)
                 holder.itemView.setOnClickListener {
                     val cheese = adapter.items[holder.adapterPosition]
-                    Snackbar.make(root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
                         .show()
                 }
                 holder
@@ -59,8 +61,8 @@ class MainActivity : AppCompatActivity() {
                 viewHolder.bind(item)
             }
         )
-        list.layoutManager = LinearLayoutManager(this)
-        list.adapter = adapter
+        binding.list.layoutManager = LinearLayoutManager(this)
+        binding.list.adapter = adapter
 
         findViewById<View>(R.id.button_dynamic).setOnClickListener {
             val intent = Intent(this, DynamicGridLayoutManagerActivity::class.java)
