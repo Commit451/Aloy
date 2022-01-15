@@ -12,7 +12,7 @@ class DynamicGridLayoutAdapter : AloyAdapter<Cheese, DynamicCheeseViewHolder>(
         onCreateViewHolder = { parent, _ ->
             val holder = DynamicCheeseViewHolder.inflate(parent)
             holder.itemView.setOnClickListener {
-                val cheese = items[holder.adapterPosition]
+                val cheese = items[holder.bindingAdapterPosition]
                 Toast.makeText(holder.itemView.context, "${cheese.name} clicked", Toast.LENGTH_SHORT)
                     .show()
             }

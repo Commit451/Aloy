@@ -9,6 +9,7 @@ import androidx.annotation.Px
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.max
 
 /**
  * [GridLayoutManager] which dynamically sizes its number of columns based on
@@ -42,7 +43,7 @@ class DynamicGridLayoutManager : GridLayoutManager {
     override fun onMeasure(recycler: RecyclerView.Recycler, state: RecyclerView.State, widthSpec: Int, heightSpec: Int) {
         if (minSize != -1) {
             val widthOrHeight = if (orientation == LinearLayoutManager.VERTICAL) View.MeasureSpec.getSize(widthSpec) else View.MeasureSpec.getSize(heightSpec)
-            val span = Math.max(1, widthOrHeight / minSize)
+            val span = max(1, widthOrHeight / minSize)
             spanCount = span
         }
         super.onMeasure(recycler, state, widthSpec, heightSpec)

@@ -33,7 +33,7 @@ You can optionally override `getItemViewType` if you need to by setting the `onG
 License
 --------
 
-    Copyright 2021 Commit 451
+    Copyright 2022 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

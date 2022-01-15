@@ -2,6 +2,7 @@
 
 package com.commit451.aloy
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -34,6 +35,7 @@ open class AloyAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Adapter
         return onGetItemViewType?.invoke(position) ?: super.getItemViewType(position)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun set(collection: Collection<T>?) {
         items.clear()
         collection?.let {

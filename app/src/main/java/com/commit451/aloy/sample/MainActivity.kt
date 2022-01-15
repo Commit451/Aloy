@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             onCreateViewHolder = { parent, viewType ->
                 val holder = CheeseViewHolder.inflate(parent)
                 holder.itemView.setOnClickListener {
-                    val cheese = adapter.items[holder.adapterPosition]
+                    val cheese = adapter.items[holder.bindingAdapterPosition]
                     Snackbar.make(binding.root, "${cheese.name} clicked", Snackbar.LENGTH_SHORT)
                         .show()
                 }
