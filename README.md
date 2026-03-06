@@ -1,7 +1,14 @@
 # Aloy
-[![](https://jitpack.io/v/Commit451/Aloy.svg)](https://jitpack.io/#Commit451/Aloy)
+[![Build](https://github.com/Commit451/Aloy/actions/workflows/ci.yml/badge.svg)](https://github.com/Commit451/Aloy/actions/workflows/ci.yml) [![Maven Central](https://img.shields.io/maven-central/v/com.commit451/aloy.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.commit451/aloy)
 
 Create a RecyclerView.Adapter without having to subclass.
+
+## Dependency
+```gradle
+dependencies {
+    implementation("com.commit451:aloy:latest.version.here")
+}
+```
 
 ## Usage
 The idea is to be able to have a valid `RecyclerView.Adapter` without having to create a class for the adapter. We do this by providing lambdas to call for `onCreateViewHolder` and `onBindViewHolder`:
